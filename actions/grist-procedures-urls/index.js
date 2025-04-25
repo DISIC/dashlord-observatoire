@@ -10,6 +10,7 @@ const field_names = {
 };
 
 const gristUrl = "https://grist.numerique.gouv.fr";
+const jdmaUrl = "https://jedonnemonavis.numerique.gouv.fr";
 
 const repeatRequest = async (url, headers, filters, offset, records = []) => {
   return fetch(
@@ -80,7 +81,7 @@ const getGristUrls = async (
     }
   );
 
-  await fetch(`${jdmaURL}/api/open-api/setTop250`, {
+  await fetch(`${jdmaUrl}/api/open-api/setTop250`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
