@@ -16,13 +16,19 @@ const encodeQueryParams = (params) => {
     .join("&");
 };
 
-const getXWikiJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
+const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
   let params;
 
-  if(JSON.parse(fromLastThreeMonth)) {
-    const threeMonthAgo = new Date(new Date().setMonth(new Date().getMonth() - 3)).getTime();
-    const newStartDate = threeMonthAgo > parseInt(startDate) ? threeMonthAgo : parseInt(startDate);
-    const newEndDate = new Date().getTime() < parseInt(endDate) ? new Date().getTime() : parseInt(endDate);
+  if (JSON.parse(fromLastThreeMonth)) {
+    const threeMonthAgo = new Date(
+      new Date().setMonth(new Date().getMonth() - 3)
+    ).getTime();
+    const newStartDate =
+      threeMonthAgo > parseInt(startDate) ? threeMonthAgo : parseInt(startDate);
+    const newEndDate =
+      new Date().getTime() < parseInt(endDate)
+        ? new Date().getTime()
+        : parseInt(endDate);
 
     params = {
       input: {
@@ -33,7 +39,6 @@ const getXWikiJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
         },
       },
     };
-
   } else {
     params = {
       input: {
@@ -66,10 +71,10 @@ const getXWikiJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
   });
 };
 
-module.exports = { getXWikiJdmaData };
+module.exports = { getJdmaData };
 
 if (require.main === module) {
-  getXWikiJdmaData(
+  getJdmaData(
     process.argv[process.argv.length - 4],
     process.argv[process.argv.length - 3],
     process.argv[process.argv.length - 2],

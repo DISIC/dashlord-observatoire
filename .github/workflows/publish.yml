@@ -1,4 +1,4 @@
-name: DashLord publish Airtable
+name: DashLord publish Grist
 
 on:
   workflow_dispatch:
@@ -21,15 +21,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: init
-        uses: "DISIC/dashlord-observatoire/actions/airtable-procedures-urls@main"
+        uses: "DISIC/dashlord-observatoire/actions/grist-procedures-urls@main"
         with:
-          airtable_api_key: ${{ secrets.AIRTABLE_API_KEY }}
+          grist_api_key: ${{ secrets.GRIST_API_KEY }}
           jdma_api_key: ${{ secrets.JDMA_TOKEN }}
           updown_api_key: ${{ secrets.UPDOWNIO_API_KEY }}
-          airtable_base_id: ${{ secrets.AIRTABLE_BASE_ID }}
-          airtable_procedures_table_name: ${{ secrets.AIRTABLE_TABLE_NAME }}
-          airtable_editions_table_name: ${{ secrets.AIRTABLE_EDITIONS_TABLE_NAME }}
-          output: airtable-procedures_urls.json
+          grist_base_id: ${{ secrets.GRIST_BASE_ID }}
+          grist_procedures_table_id: ${{ secrets.GRIST_TABLE_ID }}
+          grist_editions_table_id: ${{ secrets.GRIST_EDITIONS_TABLE_ID }}
+          output: grist-procedures_urls.json
 
   publish:
     runs-on: ubuntu-latest
@@ -44,11 +44,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Airtable insert data
+      - name: Grist insert data
         continue-on-error: true
-        uses: "DISIC/dashlord-observatoire/actions/airtable-insert-data@main"
+        uses: "DISIC/dashlord-observatoire/actions/grist-insert-data@main"
         with:
           id: ${{ matrix.sites.id }}
-          airtable_api_key: ${{ secrets.AIRTABLE_API_KEY }}
-          airtable_base_id: ${{ secrets.AIRTABLE_BASE_ID }}
-          airtable_table_name: ${{ secrets.AIRTABLE_TABLE_NAME }}
+          edition_id: ${{ matrix.sites.edition_id }}
+          grist_api_key: ${{ secrets.GRIST_API_KEY }}
+          grist_base_id: ${{ secrets.GRIST_BASE_ID }}
+          grist_table_id: ${{ secrets.GRIST_TABLE_ID }}

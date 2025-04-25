@@ -1,0 +1,54 @@
+name: "Insert procedures data into Grist"
+description: "Insère les données dans grist après le scan"
+
+inputs:
+  id:
+    description: "JDMA ID of the procedure"
+    required: true
+  edition_id:
+    description: "Grist ID of the edition"
+    required: true
+  grist_api_key:
+    description: "Clé API Grist"
+    required: true
+  grist_base_id:
+    description: "Identifiant de la base Grist"
+    required: true
+  grist_table_id:
+    description: "ID de la table Grist"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install jq for json parsing
+      shell: bash
+      run: sudo apt-get install -y jq
+    - id: grist_urls
+      name: Insert Grist data
+      shell: bash
+      run: |
+        cd ${{ github.workspace }}/results/${{ inputs.id }}
+        A11Y=$(echo "{}" | jq -R .)
+        if test -f "declaration-a11y.json"; then
+          A11Y=$(cat declaration-a11y.json | jq -R .)
+        fi
+        RGAA=$(echo "{}" | jq -R .)
+        if test -f "rgaa.json"; then
+          RGAA=$(cat rgaa.json | jq -R .)
+        fi
+        JDMA=$(echo "{}" | jq -R .)
+        if test -f "jdma.json"; then
+          JDMA=$(cat jdma.json | jq -R .)
+        fi
+        JDMA_3M=$(echo "{}" | jq -R .)
+        if test -f "jdma_3months.json"; then
+          JDMA_3M=$(cat jdma_3months.json | jq -R .)
+        fi
+        UPDOWN=$(echo "{}" | jq -R .)
+        if test -f "updown.json"; then
+          UPDOWN=$(cat updown.json | jq -R .)
+        fi
+        cd ${{ github.action_path }}
+        yarn
+        node index ${{ inputs.id }} ${{ inputs.edition_id }} ${{ inputs.grist_api_key }} ${{ inputs.grist_base_id }} ${{ inputs.grist_table_id }} "${A11Y}" "${RGAA}" "${JDMA}" "${JDMA_3M}" "${UPDOWN}"

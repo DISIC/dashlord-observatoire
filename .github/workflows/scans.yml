@@ -19,15 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: init
-        uses: "DISIC/dashlord-observatoire/actions/airtable-procedures-urls@main"
+        uses: "DISIC/dashlord-observatoire/actions/grist-procedures-urls@main"
         with:
-          airtable_api_key: ${{ secrets.AIRTABLE_API_KEY }}
+          grist_api_key: ${{ secrets.GRIST_API_KEY }}
           jdma_api_key: ${{ secrets.JDMA_TOKEN }}
           updown_api_key: ${{ secrets.UPDOWNIO_API_KEY }}
-          airtable_base_id: ${{ secrets.AIRTABLE_BASE_ID }}
-          airtable_procedures_table_name: ${{ secrets.AIRTABLE_TABLE_NAME }}
-          airtable_editions_table_name: ${{ secrets.AIRTABLE_EDITIONS_TABLE_NAME }}
-          output: airtable-procedures_urls.json
+          grist_base_id: ${{ secrets.GRIST_BASE_ID }}
+          grist_procedures_table_id: ${{ secrets.GRIST_TABLE_ID }}
+          grist_editions_table_id: ${{ secrets.GRIST_EDITIONS_TABLE_ID }}
+          output: grist-procedures_urls.json
 
   scans:
     runs-on: ubuntu-latest
@@ -51,6 +51,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Déclaration a11y
+        if: false
         continue-on-error: true
         uses: "socialgouv/dashlord-actions/declaration-a11y@feat/a11y-output-url"
         id: declaration-a11y
@@ -60,7 +61,8 @@ jobs:
 
       - name: RGAA
         continue-on-error: true
-        if: ${{ steps.declaration-a11y.outputs.url && steps.declaration-a11y.outputs.url != '' }}
+        # if: ${{ steps.declaration-a11y.outputs.url && steps.declaration-a11y.outputs.url != '' }}
+        if: false
         uses: "DISIC/dashlord-observatoire/actions/rgaa@main"
         with:
           declarationUrl: ${{ steps.declaration-a11y.outputs.url }}
@@ -68,6 +70,7 @@ jobs:
 
       - name: JDMA
         continue-on-error: true
+        if: ${{ matrix.sites.id != '' && matrix.sites.id != null }}
         uses: "DISIC/dashlord-observatoire/actions/jdma@main"
         with:
           id: ${{ matrix.sites.id }}
