@@ -51,10 +51,10 @@ const getGristUrls = async (
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    23,
-    59,
-    59,
-    999
+    0,
+    0,
+    0,
+    0
   ).getTime();
 
   let response = await repeatRequest(
