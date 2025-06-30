@@ -46,7 +46,16 @@ const getGristUrls = async (
   editions_table_id
 ) => {
   let startDate = new Date(0).getTime();
-  let endDate = new Date().getTime();
+  let now = new Date();
+  let endDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    23,
+    59,
+    59,
+    999
+  ).getTime();
 
   let response = await repeatRequest(
     `${gristUrl}/api/docs/${base_id}/tables/${editions_table_id}/records?sort=-Date_Fin_Edition&limit=1000`,
