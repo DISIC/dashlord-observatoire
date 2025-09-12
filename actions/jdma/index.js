@@ -33,7 +33,7 @@ const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
     params = {
       input: {
         json: {
-          product_id: id,
+          product_id: parseInt(id),
           start_date: newStartDate.toString(),
           end_date: newEndDate.toString(),
         },
@@ -43,7 +43,7 @@ const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
     params = {
       input: {
         json: {
-          product_id: id,
+          product_id: parseInt(id),
           start_date: startDate,
           end_date: endDate,
         },
