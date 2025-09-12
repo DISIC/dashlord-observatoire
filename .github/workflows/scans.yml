@@ -118,9 +118,10 @@ jobs:
           id: ${{ matrix.sites.id }}
           url: ${{ matrix.sites.link }}
 
-      - uses: EndBug/add-and-commit@v7
+      - uses: EndBug/add-and-commit@v9
         with:
-          add: '["results"]'
+          add: "results"
           author_name: ${{ secrets.SOCIALGROOVYBOT_NAME }}
           author_email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
           message: "update: ${{ matrix.sites.link }}"
+          pull: "--rebase --autostash"
