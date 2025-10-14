@@ -2,6 +2,11 @@ name: DashLord publish Grist
 
 on:
   workflow_dispatch:
+    inputs:
+      edition_id:
+        description: "Edition ID (optional - if not provided, uses current edition based on date)"
+        required: false
+        type: string
   workflow_run:
     workflows: ["DashLord scans"]
     types:
@@ -16,6 +21,8 @@ jobs:
   init:
     runs-on: ubuntu-latest
     name: Prepare
+    # Only run if manually triggered OR if triggered by scheduled scans (not manual scans)
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.event == 'schedule'
     outputs:
       json: ${{ steps.init.outputs.json }}
     steps:
@@ -29,6 +36,7 @@ jobs:
           grist_base_id: ${{ secrets.GRIST_BASE_ID }}
           grist_procedures_table_id: ${{ secrets.GRIST_TABLE_ID }}
           grist_editions_table_id: ${{ secrets.GRIST_EDITIONS_TABLE_ID }}
+          edition_id: ${{ github.event.inputs.edition_id }}
           output: grist-procedures_urls.json
 
   publish:

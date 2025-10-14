@@ -20,6 +20,9 @@ inputs:
   grist_editions_table_id:
     description: "ID de la table Grist des éditions"
     required: true
+  edition_id:
+    description: "ID de l'édition spécifique (optionnel - si non fourni, utilise l'édition courante basée sur la date)"
+    required: false
   output:
     description: "Path to output file. defaults to grist-procedures_urls.json"
     default: "grist-procedures_urls.json"
@@ -45,7 +48,7 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        JSON_PROCEDURES=$(node index ${{ inputs.grist_api_key }} ${{ inputs.jdma_api_key }} ${{ inputs.updown_api_key }} ${{ inputs.grist_base_id }} ${{ inputs.grist_procedures_table_id }} ${{ inputs.grist_editions_table_id }} | tr '\n' ' ')
+        JSON_PROCEDURES=$(node index ${{ inputs.grist_api_key }} ${{ inputs.jdma_api_key }} ${{ inputs.updown_api_key }} ${{ inputs.grist_base_id }} ${{ inputs.grist_procedures_table_id }} ${{ inputs.grist_editions_table_id }} "${{ inputs.edition_id }}" | tr '\n' ' ')
         echo $JSON_PROCEDURES > ${{ inputs.output }}
         echo "json=$JSON_PROCEDURES" >> $GITHUB_OUTPUT
         STRING_URLS=$(cat ${{ inputs.output }} | python3 -c "import sys, json; data = json.load(sys.stdin); print(','.join(list(map(lambda d : d['link'], data))));")

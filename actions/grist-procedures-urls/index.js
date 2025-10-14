@@ -43,7 +43,8 @@ const getGristUrls = async (
   updown_api_key,
   base_id,
   procedures_table_id,
-  editions_table_id
+  editions_table_id,
+  edition_id = null
 ) => {
   let startDate = new Date(0).getTime();
   let now = new Date();
@@ -64,11 +65,22 @@ const getGristUrls = async (
     }
   );
 
-  const currentEdition = response.find(
-    (edition) =>
-      edition.fields["Date_Fin_Edition"] * 1000 >= endDate &&
-      edition.fields["Date_Debut_Edition"] * 1000 <= endDate
-  );
+  let currentEdition;
+
+  if (edition_id) {
+    currentEdition = response.find(
+      (edition) => edition.id === parseInt(edition_id)
+    );
+    if (!currentEdition) {
+      throw new Error(`Edition with ID ${edition_id} not found`);
+    }
+  } else {
+    currentEdition = response.find(
+      (edition) =>
+        edition.fields["Date_Fin_Edition"] * 1000 >= endDate &&
+        edition.fields["Date_Debut_Edition"] * 1000 <= endDate
+    );
+  }
 
   if (currentEdition) {
     startDate = new Date(
@@ -141,11 +153,12 @@ module.exports = { getGristUrls };
 
 if (require.main === module) {
   getGristUrls(
+    process.argv[process.argv.length - 7],
     process.argv[process.argv.length - 6],
     process.argv[process.argv.length - 5],
     process.argv[process.argv.length - 4],
     process.argv[process.argv.length - 3],
     process.argv[process.argv.length - 2],
-    process.argv[process.argv.length - 1]
+    process.argv[process.argv.length - 1] || null
   );
 }
