@@ -23,34 +23,17 @@ const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
     const threeMonthAgo = new Date(
       new Date().setMonth(new Date().getMonth() - 3)
     );
-
     threeMonthAgo.setHours(0, 0, 0, 0);
-
-    const startDateObj = new Date(parseInt(startDate));
-    startDateObj.setHours(0, 0, 0, 0);
-
-    const newStartDate =
-      threeMonthAgo.getTime() > startDateObj.getTime()
-        ? threeMonthAgo.getTime()
-        : startDateObj.getTime();
 
     const endDateObj = new Date(parseInt(endDate));
     endDateObj.setHours(23, 59, 59, 999);
-
-    const currentDate = new Date();
-    currentDate.setHours(23, 59, 59, 999);
-
-    const newEndDate =
-      currentDate.getTime() < endDateObj.getTime()
-        ? currentDate.getTime()
-        : endDateObj.getTime();
 
     params = {
       input: {
         json: {
           product_id: parseInt(id),
-          start_date: newStartDate.toString(),
-          end_date: newEndDate.toString(),
+          start_date: threeMonthAgo.getTime().toString(),
+          end_date: endDateObj.getTime().toString(),
         },
       },
     };
