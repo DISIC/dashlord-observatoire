@@ -1,1 +1,1 @@
-{}
+{"uptime":99.194,"apdex":0.499,"timings":{"redirect":741,"namelookup":1,"connection":134,"handshake":270,"response":820,"total":1967},"requests":{"samples":1452,"failures":17,"satisfied":18,"tolerated":1413,"by_response_time":{"under125":0,"under250":0,"under500":18,"under1000":1372,"under2000":1431,"under4000":1433,"under8000":1434,"under16000":1435,"under32000":1435}}}
