@@ -64,8 +64,12 @@ const insertGristData = async (
   ) {
     body.fields[field_names.jdmaSatisfactionCount3M] =
       jdma_3months.metadata.satisfaction_count;
-    body.fields[field_names.jdmaSatisfactionMark3M] =
-      jdma_3months.data.satisfaction;
+    if (jdma_3months.metadata.satisfaction_count > 0) {
+      body.fields[field_names.jdmaSatisfactionMark3M] =
+        jdma_3months.data.satisfaction;
+    } else {
+      body.fields[field_names.jdmaSatisfactionMark3M] = null;
+    }
   }
 
   // jdma comprehension
