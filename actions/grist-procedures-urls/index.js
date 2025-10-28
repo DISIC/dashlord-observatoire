@@ -102,18 +102,20 @@ const getGristUrls = async (
     }
   );
 
-  await fetch(`${jdmaUrl}/api/open-api/setTop250`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jdma_api_key}`,
-    },
-    body: JSON.stringify({
-      product_ids: response
-        .map((record) => record.fields[field_names.id])
-        .filter((id) => !isNaN(parseInt(id))),
-    }),
-  });
+  if (response.length > 0) {
+    await fetch(`${jdmaUrl}/api/open-api/setTop250`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jdma_api_key}`,
+      },
+      body: JSON.stringify({
+        product_ids: response
+          .map((record) => record.fields[field_names.id])
+          .filter((id) => !isNaN(parseInt(id))),
+      }),
+    });
+  }
 
   const updownUrls = await fetch("https://updown.io/api/checks", {
     method: "GET",
