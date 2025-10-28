@@ -144,7 +144,7 @@ const getGristUrls = async (
             endDate,
           };
         })
-        .filter((record) => !!record.id && urlRegex.test(record.link)),
+        .filter((record) => !!record.id),
       null,
       2
     )
