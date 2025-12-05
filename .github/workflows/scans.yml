@@ -7,8 +7,8 @@ on:
         description: "Edition ID (optional - if not provided, uses current edition based on date)"
         required: false
         type: string
-  #schedule:
-  #  - cron: "0 1 * * *" # see https://crontab.guru
+  schedule:
+    - cron: "0 1 * * *" # see https://crontab.guru
 
 # allow only one concurrent scan action
 concurrency:
