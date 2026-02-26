@@ -60,7 +60,7 @@ const getJdmaData = (id, form_id, startDate, endDate, fromLastThreeMonth) => {
   }
 
   if (form_id) {
-    params.input.json.form_id = form_id
+    params.input.json.form_id = parseInt(form_id);
   }
 
   const url = `https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?${encodeQueryParams(
