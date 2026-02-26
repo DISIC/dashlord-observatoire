@@ -4,6 +4,7 @@ const urlRegex =
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
 const field_names = {
   id: "Dashlord_ID_JDMA",
+  form_id: "Dashlord_ID_JDMA_Formulaire",
   link: "URL_Demarche",
   jdmaStartDate: "Dashlord_JDMA_a_partir_de",
   jdmaEndDate: "Dashlord_JDMA_jusqu_a",
@@ -132,6 +133,7 @@ const getGristUrls = async (
           const jdma_id = record.fields[field_names.id];
           return {
             id: jdma_id,
+            form_id: form_id,
             edition_id: currentEdition.id,
             link: record.fields[field_names.link]
               ? record.fields[field_names.link].replaceAll("\n", "").trim()

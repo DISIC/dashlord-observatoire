@@ -16,7 +16,7 @@ const encodeQueryParams = (params) => {
     .join("&");
 };
 
-const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
+const getJdmaData = (id, form_id, startDate, endDate, fromLastThreeMonth) => {
   let params;
 
   if (JSON.parse(fromLastThreeMonth)) {
@@ -59,6 +59,10 @@ const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
     };
   }
 
+  if (form_id) {
+    params.input.json.form_id = form_id
+  }
+
   const url = `https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?${encodeQueryParams(
     params
   )}`;
@@ -69,6 +73,7 @@ const getJdmaData = (id, startDate, endDate, fromLastThreeMonth) => {
       "Content-Type": "application/json",
     },
   }).then((response) => {
+    console.log(response)
     response.json().then((json) => {
       const data = json.result?.data?.json;
 
@@ -83,6 +88,7 @@ module.exports = { getJdmaData };
 
 if (require.main === module) {
   getJdmaData(
+    process.argv[process.argv.length - 5],
     process.argv[process.argv.length - 4],
     process.argv[process.argv.length - 3],
     process.argv[process.argv.length - 2],

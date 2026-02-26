@@ -5,6 +5,9 @@ inputs:
   id:
     description: "ID of the procedure"
     required: true
+  form_id:
+    description: "ID of the form"
+    required: false
   startDate:
     description: "Get data from this date"
     required: true

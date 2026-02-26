@@ -80,6 +80,7 @@ jobs:
         uses: "DISIC/dashlord-observatoire/actions/jdma@main"
         with:
           id: ${{ matrix.sites.id }}
+          form_id: ${{ matrix.sites.form_id }}
           startDate: ${{ matrix.sites.startDate }}
           endDate: ${{ matrix.sites.endDate }}
           output: scans/jdma.json
