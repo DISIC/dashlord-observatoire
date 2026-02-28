@@ -131,6 +131,7 @@ const getGristUrls = async (
       response
         .map((record) => {
           const jdma_id = record.fields[field_names.id];
+          const form_id = record.fields[field_names.form_id];
           return {
             id: jdma_id,
             form_id: form_id,
