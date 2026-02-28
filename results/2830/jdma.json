@@ -1,1 +1,48 @@
-{"data":{"satisfaction":5.861690450054884,"comprehension":5.023474178403756,"contact":3.527918781725888,"contact_reachability":0.6431924882629108,"contact_satisfaction":5.743801652892562,"autonomy":4.419047619047619},"metadata":{"satisfaction_count":911,"comprehension_count":639,"contact_count":197,"contactReachability_count":213,"contactSatisfaction_count":121,"autonomy_count":525}}
+Response {
+  size: 0,
+  [Symbol(Body internals)]: {
+    body: PassThrough {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _maxListeners: undefined,
+      _eventsCount: 3,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kCallback)]: null
+    },
+    stream: PassThrough {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _maxListeners: undefined,
+      _eventsCount: 3,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kCallback)]: null
+    },
+    boundary: null,
+    disturbed: false,
+    error: null
+  },
+  [Symbol(Response internals)]: {
+    type: 'default',
+    url: 'https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?input=%7B%22json%22%3A%7B%22product_id%22%3Anull%2C%22start_date%22%3A%221743465600000%22%2C%22end_date%22%3A%221775001599999%22%2C%22form_id%22%3A2830%7D%7D',
+    status: 400,
+    statusText: 'Bad Request',
+    headers: {
+      connection: 'keep-alive',
+      'content-type': 'application/json',
+      date: 'Sat, 28 Feb 2026 08:45:18 GMT',
+      server: 'nginx',
+      'set-cookie': [Array],
+      'sozu-id': [Array],
+      'transfer-encoding': 'chunked',
+      vary: 'Accept-Encoding'
+    },
+    counter: 0,
+    highWaterMark: 16384
+  }
+}
