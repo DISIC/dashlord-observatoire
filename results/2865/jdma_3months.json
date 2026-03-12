@@ -29,13 +29,13 @@ Response {
   },
   [Symbol(Response internals)]: {
     type: 'default',
-    url: 'https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?input=%7B%22json%22%3A%7B%22product_id%22%3Anull%2C%22start_date%22%3A%221765411200000%22%2C%22end_date%22%3A%221773273599999%22%2C%22form_id%22%3A2865%7D%7D',
+    url: 'https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?input=%7B%22json%22%3A%7B%22product_id%22%3Anull%2C%22start_date%22%3A%221765497600000%22%2C%22end_date%22%3A%221773359999999%22%2C%22form_id%22%3A2865%7D%7D',
     status: 400,
     statusText: 'Bad Request',
     headers: {
       connection: 'keep-alive',
       'content-type': 'application/json',
-      date: 'Wed, 11 Mar 2026 04:45:04 GMT',
+      date: 'Thu, 12 Mar 2026 04:53:49 GMT',
       server: 'nginx',
       'set-cookie': [Array],
       'sozu-id': [Array],
