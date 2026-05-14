@@ -29,13 +29,13 @@ Response {
   },
   [Symbol(Response internals)]: {
     type: 'default',
-    url: 'https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?input=%7B%22json%22%3A%7B%22product_id%22%3Anull%2C%22start_date%22%3A%221770940800000%22%2C%22end_date%22%3A%221778716799999%22%2C%22form_id%22%3A2765%7D%7D',
+    url: 'https://jedonnemonavis.numerique.gouv.fr/api/trpc/answer.getObservatoireStats?input=%7B%22json%22%3A%7B%22product_id%22%3Anull%2C%22start_date%22%3A%221771027200000%22%2C%22end_date%22%3A%221778803199999%22%2C%22form_id%22%3A2765%7D%7D',
     status: 400,
     statusText: 'Bad Request',
     headers: {
       connection: 'keep-alive',
       'content-type': 'application/json',
-      date: 'Wed, 13 May 2026 05:54:53 GMT',
+      date: 'Thu, 14 May 2026 05:52:28 GMT',
       'permissions-policy': 'camera=(), microphone=(), geolocation=()',
       'referrer-policy': 'strict-origin-when-cross-origin',
       server: 'nginx',
