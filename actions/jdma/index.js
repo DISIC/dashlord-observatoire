@@ -73,7 +73,6 @@ const getJdmaData = (id, form_id, startDate, endDate, fromLastThreeMonth) => {
       "Content-Type": "application/json",
     },
   }).then((response) => {
-    console.log(response)
     response.json().then((json) => {
       const data = json.result?.data?.json;
 
