@@ -35,12 +35,12 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        node index ${{ inputs.id }} ${{ inputs.startDate }} ${{ inputs.endDate }} false > ${{ github.workspace }}/${{ inputs.output }}
+        node index ${{ inputs.id }} ${{ inputs.form_id }} ${{ inputs.startDate }} ${{ inputs.endDate }} false > ${{ github.workspace }}/${{ inputs.output }}
         cat ${{ github.workspace }}/${{ inputs.output }}
     - name: JDMA retrieve last 3 months data
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        node index ${{ inputs.id }} ${{ inputs.startDate }} ${{ inputs.endDate }} true > ${{ github.workspace }}/${{ inputs.output2 }}
+        node index ${{ inputs.id }}  ${{ inputs.form_id }} ${{ inputs.startDate }} ${{ inputs.endDate }} true > ${{ github.workspace }}/${{ inputs.output2 }}
         cat ${{ github.workspace }}/${{ inputs.output2 }}
 
