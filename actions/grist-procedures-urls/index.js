@@ -111,8 +111,8 @@ const getGristUrls = async (
         Authorization: `Bearer ${jdma_api_key}`,
       },
       body: JSON.stringify({
-        product_ids: response
-          .map((record) => record.fields[field_names.id])
+        form_ids: response
+          .map((record) => record.fields[field_names.form_id])
           .filter((id) => !isNaN(parseInt(id))),
       }),
     });
